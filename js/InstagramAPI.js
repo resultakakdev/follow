@@ -19,7 +19,15 @@ class InstagramAPI {
 		.then(callback)
 	}
 
-	getUserInfo(userID, callback) {
-
+	getUserFollowingStatus(userID, callback) {
+		let url = this.baseURL + 'friendships/show/' + userID + '/'
+		return fetch(url, {
+			accept: 'application/json',
+			credentials: 'include'
+		})
+		.then( (response) => {
+			return response.json()
+		})
+		.then(callback)
 	}
 }

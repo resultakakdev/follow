@@ -21,10 +21,10 @@ function injectFollowingStatusLabel(status) {
 chrome.runtime.onMessage.addListener( (request, sender, response) => {
 	let instagramCookies = JSON.parse(request.instagramCookies)
 	let username = JSON.parse(request.user)
-	console.log(instagramCookies)
-	console.log(username)
-	InstaAPI.getIDFromUsername('jayvisual', (info) => {
-		console.log(info)
+	InstaAPI.getIDFromUsername(username, (ID) => {
+		InstaAPI.getUserFollowingStatus(ID, (status) => {
+			console.log(status)
+		})
 		injectFollowingStatusLabel('Following')
 		return
 	})
