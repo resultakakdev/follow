@@ -1,3 +1,5 @@
+let userCookies = {}
+
 function getCookies(callback) {
 	let userCookie = {}
 	chrome.cookies.get({
@@ -39,8 +41,30 @@ chrome.runtime.onMessage.addListener( (request, sender, response) => {
 	if(request === 'getCookies') {
 		console.log('here')
 		getCookies( (userCookie) => {
-			chrome.extension.getBackgroundPage().console.log(userCookie)
+			userCookies = userCookie
+			// chrome.extension.getBackgroundPage().console.log(userCookie)
 			sendCookies(userCookie)
 		})
 	}
 })
+
+/* modify header before sending requst */
+chrome.webRequest.onBeforeSendHeaders.addListener( (info) => {
+	let headers = info.requestHeaders
+	let shouldInject = true
+	if(!userCookies.ds_user_id && !userCookies.sessionID) {
+		shouldInject = false
+	}
+	if(shouldInject){
+		console.log('clear to change headers')
+	}
+},{
+	urls: [
+		"*://*.instagram.com/*"
+	],
+	types: [
+		"xmlhttprequest"
+	]
+  },
+	["blocking", "requestHeaders"]
+)
