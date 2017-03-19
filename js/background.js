@@ -1,5 +1,9 @@
 let userCookies = {}
 
+function getUsernameFromURL(url) {
+	return url.split('/')[3]
+}
+
 function getCookies(callback) {
 	let userCookie = {}
 	chrome.cookies.get({
@@ -33,7 +37,9 @@ function getCookies(callback) {
 
 function sendCookies(cookie) {
 	chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-		chrome.tabs.sendMessage(tabs[0].id, {instagramCookies: JSON.stringify(cookie)});
+		/* get the username from the url of the current tab => https://www.instagram.com/james/ will return james */
+		username = getUsernameFromURL(tabs[0].url)
+		chrome.tabs.sendMessage(tabs[0].id, {instagramCookies: JSON.stringify(cookie), user: JSON.stringify(username)});
 	})
 }
 
@@ -70,7 +76,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener( (info) => {
 		})
 		for(var i = 0; i < headers.length; i++){
 			let header = headers[i]
-			if(header.name.toLowercase() == 'referer'){
+			if(header.name.toLowerCase() == 'referer'){
 				if(header.value != 'https://www.instagram.com'){
 					shouldInject = false
 				}

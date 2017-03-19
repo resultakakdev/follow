@@ -13,6 +13,9 @@ class InstagramAPI {
 		.then( (response) => {
 			return response.json()
 		})
+		.then( (json) => {
+			return json['user']['id']
+		})
 		.then(callback)
 	}
 
