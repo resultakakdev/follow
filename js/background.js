@@ -54,7 +54,6 @@ function sendCookies(cookie) {
 
 chrome.runtime.onMessage.addListener( (request, sender, response) => {
 	if(request === 'getCookies') {
-		console.log('here')
 		getCookies( (userCookie) => {
 			userCookies = userCookie
 			sendCookies(userCookie)
