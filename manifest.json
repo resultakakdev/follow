@@ -14,7 +14,8 @@
   "content_scripts": [
     {
       "matches": ["*://*.instagram.com/*"],
-      "js": ["js/InstagramAPI.js", "js/inject.js"]
+      "js": ["js/InstagramAPI.js", "js/inject.js"],
+      "css": ["css/main.css"]
     }
   ],
   "background": {

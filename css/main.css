@@ -1,0 +1,10 @@
+#followingStatusLabel {
+	text-align: left;
+	font-size: 20px;
+	font-weight: 300;
+	width: inherit;
+}
+
+#followingStatusLabelSpan {
+	padding: 2px;
+}
