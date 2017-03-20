@@ -83,16 +83,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener( (info) => {
 		}
 	}
 	if(shouldInject){
-		// headers.push({
-		// 	name: 'x-ig-capabilities',
-		// 	value: '3w=='
-		// })
 		for(var i = 0; i < headers.length; i++){
 			let header = headers[i]
 			if(header.name.toLowerCase() == 'referer'){
-				// if(header.value != 'https://www.instagram.com'){
-				// 	shouldInject = false
-				// }
 				if(!header.value.includes('instagram')){
 					shouldInject = false
 				}

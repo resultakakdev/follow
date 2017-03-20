@@ -10,11 +10,20 @@ function sendCookieRequest() {
 }
 
 function injectFollowingStatusLabel(status) {
-	let head = document.getElementsByClassName('_8mm5v')[0]
-	let followingStatusLabel = document.createElement('div')
+	// let head = document.getElementsByClassName('_8mm5v')[0]
+	// let followingStatusLabel = document.createElement('h3')
+	// followingStatusLabel.setAttribute('id', 'followingStatusLabel')
+	// head.insertBefore(followingStatusLabel, head.children[1])
+	// followingStatusLabel.innerHTML = status
+	let head = document.getElementsByClassName('_de9bg')[0]
+	let followingStatusLabel = document.createElement('h3')
+	let followingStatusLabelSpan = document.createElement('span')
 	followingStatusLabel.setAttribute('id', 'followingStatusLabel')
-	head.insertBefore(followingStatusLabel, head.children[1])
-	followingStatusLabel.innerHTML = status
+	followingStatusLabelSpan.setAttribute('id', 'followingStatusLabelSpan')
+	// head.insertBefore(followingStatusLabel, head.children[1])
+	followingStatusLabel.appendChild(followingStatusLabelSpan)
+	head.appendChild(followingStatusLabel)
+	followingStatusLabelSpan.innerHTML = status
 }
 
 // wait for background.js to send over cookies
