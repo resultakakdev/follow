@@ -1,6 +1,6 @@
 let userCookies = {}
 
-loadCookies()
+// loadCookies()
 
 /* get the username from the url of the current tab => https://www.instagram.com/james/ will return james */
 function getUsernameFromURL(url) {
@@ -61,11 +61,11 @@ chrome.runtime.onMessage.addListener( (request, sender, response) => {
 	}
 })
 
-// chrome.tabs.onUpdated.addListener( (tabID, change, tab) => {
-// 	if(change.status == 'complete' && tab.active) {
-// 		sendCookies(userCookies)
-// 	}
-// })
+chrome.tabs.onUpdated.addListener( (tabID, change, tab) => {
+	if(change.status == 'complete' && tab.active) {
+		sendCookies(userCookies)
+	}
+})
 
 /* modify header before sending request */
 chrome.webRequest.onBeforeSendHeaders.addListener( (info) => {

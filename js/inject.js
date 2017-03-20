@@ -15,7 +15,11 @@ function injectFollowingStatusLabel(status, booleanStatus) {
 	// followingStatusLabel.setAttribute('id', 'followingStatusLabel')
 	// head.insertBefore(followingStatusLabel, head.children[1])
 	// followingStatusLabel.innerHTML = status
+
 	let head = document.getElementsByClassName('_de9bg')[0]
+	if(document.getElementById('followingStatusLabel')) {
+		return
+	} else {
 	let followingStatusLabel = document.createElement('h3')
 	let followingStatusLabelSpan = document.createElement('span')
 	followingStatusLabel.setAttribute('id', 'followingStatusLabel')
@@ -25,6 +29,7 @@ function injectFollowingStatusLabel(status, booleanStatus) {
 	head.appendChild(followingStatusLabel)
 	followingStatusLabelSpan.innerHTML = status
 	booleanStatus ? followingStatusLabelSpan.style.backgroundColor = '#C8E6C9' : followingStatusLabelSpan.style.backgroundColor = '#FF8A80'
+	}
 }
 
 // wait for background.js to send over cookies
