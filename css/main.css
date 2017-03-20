@@ -3,8 +3,10 @@
 	font-size: 20px;
 	font-weight: 300;
 	width: inherit;
+	position: absolute;
+	bottom: 0;
 }
 
 #followingStatusLabelSpan {
-	padding: 2px;
+	padding: 1px;
 }

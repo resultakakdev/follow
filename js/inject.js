@@ -33,6 +33,7 @@ chrome.runtime.onMessage.addListener( (request, sender, response) => {
 	let username = JSON.parse(request.user)
 	InstaAPI.getIDFromUsername(username, (ID) => {
 		InstaAPI.getUserFollowingStatus(ID, (status) => {
+			console.log(status)
 			let isFollowing = status['followed_by']
 			isFollowing ? isFollowingString = 'Follows you' : isFollowingString = 'Does not follow you'
 			injectFollowingStatusLabel(isFollowingString, isFollowing)
